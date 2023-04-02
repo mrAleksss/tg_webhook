@@ -4,7 +4,7 @@ import os
 import requests
 import json
 import sqlite3
-import message
+import sender
 
 
 load_dotenv()
@@ -33,9 +33,9 @@ def index():
         # write_json(r)
         chat_id = r['message']['chat']['id']
         message = r['message']['text']
-        message.send_message(chat_id=chat_id, text=message)
+        sender.send_message(chat_id=chat_id, text=message)
         if 'hello' in message:
-            message.send_message(chat_id, text='Hello, sir! Can i help you?')
+            sender.send_message(chat_id, text='Hello, sir! Can i help you?')
         # Connect to the database
         conn = sqlite3.connect('store.db')
         # Create a cursor to execute SQL queries
