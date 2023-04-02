@@ -1,0 +1,23 @@
+{
+  "update_id": 778657033,
+  "message": {
+    "message_id": 35,
+    "from": {
+      "id": 5519225430,
+      "is_bot": false,
+      "first_name": "Alex",
+      "last_name": "Ciname",
+      "username": "Deo_pool",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 5519225430,
+      "first_name": "Alex",
+      "last_name": "Ciname",
+      "username": "Deo_pool",
+      "type": "private"
+    },
+    "date": 1680345307,
+    "text": "hy"
+  }
+}
