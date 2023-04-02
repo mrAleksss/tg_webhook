@@ -1,22 +1,21 @@
-from flask import Flask, request, jsonify
-from dotenv import load_dotenv
-import os
-import requests
-import json
+"""main file"""
 import sqlite3
+import json
+from flask import Flask, request, jsonify
 import sender
 
 
-load_dotenv()
+
 
 app = Flask(__name__)
 
-url = 'https://api.telegram.org/bot6203348316:AAGturPMm2UdFPkv91AWiL1_FK3HzwOSy_Q/'
+URL = 'https://api.telegram.org/bot6203348316:AAGturPMm2UdFPkv91AWiL1_FK3HzwOSy_Q/'
 
 
 def write_json(data, filename='messages.json'):
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+    """for create new file"""
+    with open(filename, 'w') as doc:
+        json.dump(data, doc, indent=2, ensure_ascii=False)
 
 
 # def send_message(chat_id, text='How are you doing?!'):
@@ -28,11 +27,12 @@ def write_json(data, filename='messages.json'):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    """main function"""
     if request.method == 'POST':
-        r = request.get_json()
+        response = request.get_json()
         # write_json(r)
-        chat_id = r['message']['chat']['id']
-        message = r['message']['text']
+        chat_id = response['message']['chat']['id']
+        message = response['message']['text']
         sender.send_message(chat_id=chat_id, text=message)
         if 'hello' in message:
             sender.send_message(chat_id, text='Hello, sir! Can i help you?')
@@ -67,7 +67,7 @@ def index():
         conn.close()
 
 
-        return jsonify(r)
+        return jsonify(response)
 
     return '<h1>Hello Dear!</h1>'
 
@@ -77,3 +77,4 @@ def index():
 
 if __name__ == '__main__':
     app.run()
+
