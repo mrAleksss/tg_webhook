@@ -4,13 +4,14 @@ import os
 import requests
 import json
 import sqlite3
+import message
 
 
 load_dotenv()
 
 app = Flask(__name__)
 
-url = f'https://api.telegram.org/bot6203348316:AAGturPMm2UdFPkv91AWiL1_FK3HzwOSy_Q/'
+url = 'https://api.telegram.org/bot6203348316:AAGturPMm2UdFPkv91AWiL1_FK3HzwOSy_Q/'
 
 
 def write_json(data, filename='messages.json'):
@@ -18,11 +19,11 @@ def write_json(data, filename='messages.json'):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def send_message(chat_id, text='How are you doing?!'):
-    url_send = url + 'sendMessage'
-    answer = {'chat_id': chat_id, 'text': text}
-    r = requests.post(url_send, json=answer)
-    return r.json()
+# def send_message(chat_id, text='How are you doing?!'):
+#     url_send = url + 'sendMessage'
+#     answer = {'chat_id': chat_id, 'text': text}
+#     r = requests.post(url_send, json=answer)
+#     return r.json()
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -32,9 +33,9 @@ def index():
         # write_json(r)
         chat_id = r['message']['chat']['id']
         message = r['message']['text']
-        send_message(chat_id=chat_id)
+        message.send_message(chat_id=chat_id, text=message)
         if 'hello' in message:
-            send_message(chat_id, text='Hello, sir! Can i help you?')
+            message.send_message(chat_id, text='Hello, sir! Can i help you?')
         # Connect to the database
         conn = sqlite3.connect('store.db')
         # Create a cursor to execute SQL queries
