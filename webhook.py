@@ -10,27 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-url = f'https://api.telegram.org/bot{os.getenv(TOKEN)}/setWebhook?url=https://53e7-178-74-213-63.eu.ngrok.io'
-
-
-# Connect to the database
-conn = sqlite3.connect('store.db')
-# Create a cursor to execute SQL queries
-cur = conn.cursor()
-# Creat
-cur.execute("""
-e the table if it doesn't exist    CREATE TABLE IF NOT EXISTS messages(
-    id INTEGER PRIMARY KEY,
-    chat_id INTEGER,
-    message TEXT
-    )
-""")
-# Get the data from the webhook
-# r = request.get_json()
-# chat_id = r['message']['chat']['id']
-# message = r['message']['text']
-# Insert the data into the database
-
+url = f'https://api.telegram.org/bot6203348316:AAGturPMm2UdFPkv91AWiL1_FK3HzwOSy_Q/'
 
 
 def write_json(data, filename='messages.json'):
@@ -52,7 +32,7 @@ def index():
         # write_json(r)
         chat_id = r['message']['chat']['id']
         message = r['message']['text']
- 
+        send_message(chat_id=chat_id)
         if 'hello' in message:
             send_message(chat_id, text='Hello, sir! Can i help you?')
         # Connect to the database
