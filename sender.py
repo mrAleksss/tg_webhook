@@ -1,3 +1,4 @@
+"""helper function"""
 import requests
 
 URL = 'https://api.telegram.org/bot6203348316:AAGturPMm2UdFPkv91AWiL1_FK3HzwOSy_Q/'
